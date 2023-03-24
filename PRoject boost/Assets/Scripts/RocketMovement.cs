@@ -1,47 +1,32 @@
-using System;
+using StateMachine.RocketStateMachine;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class RocketMovement : MonoBehaviour
 {
-    [SerializeField] private float _force;
-    [SerializeField] private float _rotationSpeed;
     [SerializeField] private float _maxAngularVelocity;
-    private float _rotateAxis;
-    private float _trustAxis;
+    [SerializeField] private Transform _centerOfMass;
     private Rigidbody _rigidbody;
     private Transform _transform;
+    private RocketStateMachine _stateMachine;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.maxAngularVelocity = _maxAngularVelocity;
-        _transform = transform;
+        _rigidbody.centerOfMass = _centerOfMass.position;
+        
+        _stateMachine = new RocketStateMachine(_rigidbody);
+        _stateMachine.ChangeState(_stateMachine.IdleState);
     }
 
     private void Update()
     {
-        _rotateAxis = Input.GetAxis("Horizontal");
-        _trustAxis = Input.GetAxis("Thrust");
+        _stateMachine.Update();
     }
 
     private void FixedUpdate()
     {
-        RotateProcess();
-        ThrustProcess();
+        _stateMachine.FixedUpdate();
     }
-
-    private void RotateProcess()
-    {
-        var rotateDirection = _transform.forward * _rotateAxis;
-        if (rotateDirection == Vector3.zero) return;
-        _rigidbody.AddTorque(rotateDirection * _rotationSpeed, ForceMode.Acceleration);
-    }
-    
-    private void ThrustProcess()
-    {
-        if (_trustAxis == 0) return;
-        _rigidbody.AddForce(_transform.up * _force, ForceMode.Acceleration);
-    }
-
 }
