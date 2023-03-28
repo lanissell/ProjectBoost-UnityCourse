@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70e0431bc0ba40039a13771373822a0f, type: 3}
   m_Name: MovementData
   m_EditorClassIdentifier: 
-  <Force>k__BackingField: 7
+  <Force>k__BackingField: 6
   <RotateSpeed>k__BackingField: 3

@@ -1,15 +1,16 @@
-﻿using UnityEngine;
+﻿using StateMachine;
+using UnityEngine;
 
-namespace StateMachine.RocketStateMachine.States.Abstract
+namespace Rocket.StateMachine.RocketStateMachine.States.Abstract
 {
     public abstract class BaseRocketState: IState
     {
-        protected RocketStateMachine StateMachine;
+        protected global::Rocket.StateMachine.RocketStateMachine.RocketStateMachine StateMachine;
         protected Rigidbody RocketRigidbody;
         protected float RotateAxis;
         protected float TrustAxis;
 
-        protected BaseRocketState(RocketStateMachine stateMachine)
+        protected BaseRocketState(global::Rocket.StateMachine.RocketStateMachine.RocketStateMachine stateMachine)
         {
             StateMachine = stateMachine;
             RocketRigidbody = StateMachine.RocketRigidbody;
@@ -37,6 +38,5 @@ namespace StateMachine.RocketStateMachine.States.Abstract
             RotateAxis = Input.GetAxis("Horizontal");
             TrustAxis = Input.GetAxis("Thrust");
         }
-        
     }
 }
