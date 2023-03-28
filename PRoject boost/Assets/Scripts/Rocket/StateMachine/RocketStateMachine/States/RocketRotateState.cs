@@ -14,12 +14,6 @@ namespace Rocket.StateMachine.RocketStateMachine.States
         {
         }
 
-        public override void Enter()
-        {
-            base.Enter();
-            
-        }
-
         public override void Exit()
         {
             base.Exit();
