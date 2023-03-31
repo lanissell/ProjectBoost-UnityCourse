@@ -5,12 +5,12 @@ namespace Rocket.StateMachine.RocketStateMachine.States.Abstract
 {
     public abstract class BaseRocketState: IState
     {
-        protected global::Rocket.StateMachine.RocketStateMachine.RocketStateMachine StateMachine;
+        protected RocketStateMachine StateMachine;
         protected Rigidbody RocketRigidbody;
         protected float RotateAxis;
         protected float TrustAxis;
 
-        protected BaseRocketState(global::Rocket.StateMachine.RocketStateMachine.RocketStateMachine stateMachine)
+        protected BaseRocketState(RocketStateMachine stateMachine)
         {
             StateMachine = stateMachine;
             RocketRigidbody = StateMachine.RocketRigidbody;
@@ -37,6 +37,14 @@ namespace Rocket.StateMachine.RocketStateMachine.States.Abstract
         {
             RotateAxis = Input.GetAxis("Horizontal");
             TrustAxis = Input.GetAxis("Thrust");
+        }
+
+        protected void ActivateRotateState()
+        {
+            if (StateMachine.CurrentState == StateMachine.RotateState || 
+                RotateAxis == 0) return;
+            StateMachine.RotateState.Direction = RotateAxis;
+            StateMachine.ChangeCurrentState(StateMachine.RotateState);
         }
     }
 }

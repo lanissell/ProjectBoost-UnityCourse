@@ -7,7 +7,7 @@ namespace Rocket.StateMachine.RocketStateMachine.States.Abstract
     {
         protected MovementData MovementData;
 
-        protected RocketMovementState(Rocket.StateMachine.RocketStateMachine.RocketStateMachine stateMachine) : 
+        protected RocketMovementState(RocketStateMachine stateMachine) : 
             base(stateMachine)
         {
             MovementData = Resources.Load<MovementData>("Rocket/MovementData");

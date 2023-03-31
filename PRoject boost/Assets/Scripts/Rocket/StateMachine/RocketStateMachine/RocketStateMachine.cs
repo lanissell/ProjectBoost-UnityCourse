@@ -7,19 +7,18 @@ namespace Rocket.StateMachine.RocketStateMachine
     public class RocketStateMachine: BaseStateMachine
     {
         public Rigidbody RocketRigidbody { get;}
-
-        public RocketTrustIdleState TrustIdleState { get; }
-        public RocketRotateIdleState RotateIdleState { get; }
+        public RocketIdleState IdleState { get; }
         public RocketTrustState TrustState { get; }
-        public RocketRotateState RocketRotateState { get; }
+        public RocketRotateState RotateState { get; }
+
+        public IState PreviousState;
 
         public RocketStateMachine(Rigidbody rigidbody)
         {
             RocketRigidbody = rigidbody;
-            TrustIdleState = new RocketTrustIdleState(this);
-            RotateIdleState = new RocketRotateIdleState(this);
+            IdleState = new RocketIdleState(this);
             TrustState = new RocketTrustState(this);
-            RocketRotateState = new RocketRotateState(this);
+            RotateState = new RocketRotateState(this);
         }
     }
 }

@@ -6,30 +6,30 @@ namespace Rocket.StateMachine.RocketStateMachine.States
 {
     public class RocketTrustState: RocketMovementState
     {
-        public static event Action OnTrust;
-        public static event Action OnTrustExit;
+        public static event Action OnTrustEnter;
 
-        public RocketTrustState(global::Rocket.StateMachine.RocketStateMachine.RocketStateMachine stateMachine) : base(stateMachine)
+        public RocketTrustState(RocketStateMachine stateMachine) : base(stateMachine)
         {
         }
 
         public override void Enter()
         {
             base.Enter();
-            OnTrust?.Invoke();
+            OnTrustEnter?.Invoke();
         }
 
         public override void Exit()
         {
             base.Exit();
-            OnTrustExit?.Invoke();
+            StateMachine.PreviousState = this;
         }
-
+ 
         public override void Update()
         {
             base.Update();
+            ActivateRotateState();
             if (TrustAxis != 0) return;
-            StateMachine.ChangeCurrentState(StateMachine.TrustIdleState);
+            StateMachine.ChangeCurrentState(StateMachine.IdleState);
         }
 
         public override void FixedUpdate()

@@ -2,14 +2,14 @@
 {
     public abstract class BaseStateMachine
     {
-        private IState _currentState;
+        public IState CurrentState { get; private set; }
         private IState _additionalState;
 
         public void ChangeCurrentState(IState newState)
         {
-            _currentState?.Exit();
-            _currentState = newState;
-            _currentState.Enter();
+            CurrentState?.Exit();
+            CurrentState = newState;
+            CurrentState.Enter();
         }
         
         public void ChangeAdditionalState(IState newState)
@@ -21,13 +21,13 @@
 
         public void Update()
         {
-            _currentState?.Update();
+            CurrentState?.Update();
             _additionalState?.Update();
         }
 
         public void FixedUpdate()
         {
-            _currentState?.FixedUpdate();
+            CurrentState?.FixedUpdate();
             _additionalState?.FixedUpdate();
         }
     }

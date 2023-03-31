@@ -16,8 +16,7 @@ namespace Rocket
             _rigidbody = GetComponent<Rigidbody>();
             
             _stateMachine = new RocketStateMachine(_rigidbody);
-            _stateMachine.ChangeCurrentState(_stateMachine.TrustIdleState);
-            _stateMachine.ChangeAdditionalState(_stateMachine.RotateIdleState);
+            _stateMachine.ChangeCurrentState(_stateMachine.IdleState);
         }
 
         private void Update()
