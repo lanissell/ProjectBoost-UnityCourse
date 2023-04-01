@@ -3,15 +3,18 @@ using UnityEngine;
 
 namespace Rocket.EffectControllers
 {
+    [RequireComponent(typeof(AudioSource))]
     public class RocketTrustEffect : MonoBehaviour
     {
-        [SerializeField] private AudioSource _trustAudioSource;
         [SerializeField] private ParticleSystem _trustEffect;
+        private AudioSource _trustAudioSource;
+
 
         private void Start()
         {
             RocketTrustState.OnTrustEnter += PlayTrustEnterEffect;
             RocketIdleState.OnIdleEnter += PauseTrustEffect;
+            _trustAudioSource = GetComponent<AudioSource>();
         }
 
         private void PlayTrustEnterEffect()
