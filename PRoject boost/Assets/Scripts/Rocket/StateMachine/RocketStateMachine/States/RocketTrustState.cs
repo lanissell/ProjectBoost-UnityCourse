@@ -6,7 +6,7 @@ namespace Rocket.StateMachine.RocketStateMachine.States
 {
     public class RocketTrustState: RocketMovementState
     {
-        public static event Action OnTrustEnter;
+        public static event Action TrustEntering;
 
         public RocketTrustState(RocketStateMachine stateMachine) : base(stateMachine)
         {
@@ -15,7 +15,7 @@ namespace Rocket.StateMachine.RocketStateMachine.States
         public override void Enter()
         {
             base.Enter();
-            OnTrustEnter?.Invoke();
+            TrustEntering?.Invoke();
         }
 
         public override void Exit()

@@ -12,12 +12,12 @@ namespace Rocket.EffectControllers
 
         private void Start()
         {
-            RocketTrustState.OnTrustEnter += PlayTrustEnterEffect;
-            RocketIdleState.OnIdleEnter += PauseTrustEffect;
+            RocketTrustState.TrustEntering += PlayTrustEnteringEffect;
+            RocketIdleState.IdleEntering += PauseTrustEffect;
             _trustAudioSource = GetComponent<AudioSource>();
         }
 
-        private void PlayTrustEnterEffect()
+        private void PlayTrustEnteringEffect()
         {
             _trustAudioSource.Play();
             _trustEffect.Play();
@@ -31,8 +31,8 @@ namespace Rocket.EffectControllers
 
         private void OnDestroy()
         {
-            RocketTrustState.OnTrustEnter -= PlayTrustEnterEffect;
-            RocketIdleState.OnIdleEnter -= PauseTrustEffect;
+            RocketTrustState.TrustEntering -= PlayTrustEnteringEffect;
+            RocketIdleState.IdleEntering -= PauseTrustEffect;
         }
     }
 }

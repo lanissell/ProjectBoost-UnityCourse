@@ -1,13 +1,12 @@
 ﻿using System;
 using Rocket.StateMachine.RocketStateMachine.States.Abstract;
-using Unity.VisualScripting;
-using UnityEngine;
+
 
 namespace Rocket.StateMachine.RocketStateMachine.States
 {
     public class RocketIdleState: BaseRocketState
     {
-        public static event Action OnIdleEnter; 
+        public static event Action IdleEntering; 
 
         public RocketIdleState(RocketStateMachine stateMachine) : 
             base(stateMachine)
@@ -17,7 +16,7 @@ namespace Rocket.StateMachine.RocketStateMachine.States
         public override void Enter()
         {
             base.Enter();
-            OnIdleEnter?.Invoke();
+            IdleEntering?.Invoke();
         }
 
         public override void Exit()

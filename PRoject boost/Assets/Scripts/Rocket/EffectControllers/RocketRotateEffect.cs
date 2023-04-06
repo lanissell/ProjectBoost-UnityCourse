@@ -11,8 +11,8 @@ namespace Rocket.EffectControllers
 
         private void Start()
         {
-            RocketRotateState.OnRotateEnter += PlayRotateEffect;
-            RocketRotateState.OnRotateExit += PauseRotateEffect;
+            RocketRotateState.RotateEntering += PlayRotateEffect;
+            RocketRotateState.RotateExiting += PauseRotateEffect;
         }
         
         private void PlayRotateEffect(float direction)
@@ -39,8 +39,8 @@ namespace Rocket.EffectControllers
         
         private void OnDestroy()
         {
-            RocketRotateState.OnRotateEnter -= PlayRotateEffect;
-            RocketRotateState.OnRotateExit -= PauseRotateEffect;
+            RocketRotateState.RotateEntering -= PlayRotateEffect;
+            RocketRotateState.RotateExiting -= PauseRotateEffect;
         }
     }
 }

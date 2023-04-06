@@ -8,8 +8,8 @@ namespace Rocket.StateMachine.RocketStateMachine.States
     public class RocketRotateState: RocketMovementState
     {
         public float Direction;
-        public static event Action<float> OnRotateEnter;
-        public static event Action OnRotateExit;
+        public static event Action<float> RotateEntering;
+        public static event Action RotateExiting;
 
         private IState _previousState;
         
@@ -21,14 +21,14 @@ namespace Rocket.StateMachine.RocketStateMachine.States
         public override void Enter()
         {
             base.Enter();
-            OnRotateEnter?.Invoke(Direction);
+            RotateEntering?.Invoke(Direction);
             _previousState = StateMachine.PreviousState;
         }
 
         public override void Exit()
         {
             base.Exit();
-            OnRotateExit?.Invoke();
+            RotateExiting?.Invoke();
             _previousState.Exit();
         }
 
